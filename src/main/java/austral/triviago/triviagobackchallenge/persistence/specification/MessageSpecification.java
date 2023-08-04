@@ -24,7 +24,13 @@ public class MessageSpecification implements Specification<Message> {
         final List<Predicate> restrictions = new ArrayList<>();
         // Filters by author equality
         if (messageFilter.getAuthor() != null && !messageFilter.getAuthor().equals("")) {
-            restrictions.add(criteriaBuilder.equal(message.get("content"), messageFilter.getAuthor()));
+            restrictions.add(criteriaBuilder.equal(message.get("author"), messageFilter.getAuthor()));
+        }
+        if (messageFilter.getDateTo() != null) {
+            restrictions.add(criteriaBuilder.lessThanOrEqualTo(message.get("creationDate"), messageFilter.getDateTo()));
+        }
+        if (messageFilter.getDateFrom() != null) {
+            restrictions.add(criteriaBuilder.greaterThanOrEqualTo(message.get("creationDate"), messageFilter.getDateFrom()));
         }
         return criteriaBuilder.and(restrictions.toArray(new Predicate[0]));
     }
