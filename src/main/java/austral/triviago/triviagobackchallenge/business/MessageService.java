@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public interface MessageService {
     Page<Message> findAll(MessageFilter messageFilter, Pageable pageable);
-    Optional<Message> findById(Integer id);
+    MessageFilter findById(Integer id);
 
-    Message postMessage(Message message);
+    MessageFilter postMessage(Message message);
 
     void deleteMessageById(Integer id);
 }

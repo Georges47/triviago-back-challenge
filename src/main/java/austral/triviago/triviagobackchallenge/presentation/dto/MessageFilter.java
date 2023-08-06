@@ -5,12 +5,19 @@ import java.util.Date;
 
 public class MessageFilter {
     //Dto que uso para el filtrado de información???
+    private Integer Id;
     private String author;
     private String content;
     private Date creation_date;  //Se realizan busquedas entre esos dos valores
     private Date since_date;
     private Date to_date;
 
+    public Integer getId() {
+        return Id;
+    }
+    public void setId(Integer id) {
+        Id = id;
+    }
     public String getAuthor() {
         return author;
     }
