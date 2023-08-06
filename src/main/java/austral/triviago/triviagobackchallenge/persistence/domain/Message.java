@@ -1,6 +1,10 @@
 package austral.triviago.triviagobackchallenge.persistence.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -8,30 +12,31 @@ public class Message {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //MySql soporta columnas con autoincremento
-    private Integer primaryKey;
+    private Integer Id;
     @Column
-    private String Author; //Es el autor
+    private String author; //Es el autor
     @Column
     private String content; //Es el body
     @Column
-    private Date creation_date; // Vas a tener que usar Date
+    @JsonFormat(pattern = "dd/MM/yyyy") //pattern indica a Jackson cómo se debe leer la fecha recibida
+    private Date creationDate; // Vas a tener que usar Date (:
 
     public Message() {}
 
-    public Integer getPrimaryKey() {
-        return primaryKey;
+    public Integer getId() {
+        return Id;
     }
 
-    public void setPrimaryKey(Integer primaryKey) {
-        this.primaryKey = primaryKey;
+    public void setId(Integer primaryKey) {
+        this.Id = primaryKey;
     }
 
     public String getAuthor() {
-        return Author;
+        return author;
     }
 
     public void setAuthor(String author) {
-        Author = author;
+        this.author = author;
     }
 
     public String getContent() {
@@ -42,11 +47,11 @@ public class Message {
         this.content = content;
     }
 
-    public Date getCreation_date() {
-        return creation_date;
+    public Date getCreationDate() {
+        return creationDate;
     }
 
-    public void setCreation_date(Date creation_date) {
-        this.creation_date = creation_date;
+    public void setCreation_date(Date date) throws ParseException {
+        this.creationDate = date;
     }
 }

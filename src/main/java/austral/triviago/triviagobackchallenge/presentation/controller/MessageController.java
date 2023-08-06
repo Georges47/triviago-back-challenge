@@ -24,6 +24,7 @@ public class MessageController {
     }
 
     // The attributes of the message filter should be passed as query parameters
+
     public Page<Message> getMessages(@ModelAttribute MessageFilter filter, Pageable pageable) {
         return messageService.findAll(filter, pageable);
     }
@@ -35,14 +36,27 @@ public class MessageController {
             return new ResponseEntity<>(m.get(), HttpStatus.FOUND);
         }
         else{
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Message not found",HttpStatus.NOT_FOUND);
         }
     }
 
     @PostMapping("/messages")
     public ResponseEntity<?> postMessage(@RequestBody Message message){
-        return new ResponseEntity<>(messageService.postMessage(message), HttpStatus.ACCEPTED);
+        //Falta colocar la fecha!!!
+        return new ResponseEntity<>(messageService.postMessage(message), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/message/{id}")
+    public ResponseEntity<?> deleteMessage(@PathVariable("id") Integer id){
+        Optional<Message> m = messageService.findById(id);
+        if(m.isPresent()){
+            messageService.deleteMessageById(id);
+            return new ResponseEntity<>(m.get(), HttpStatus.FOUND);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+
 
 
 }

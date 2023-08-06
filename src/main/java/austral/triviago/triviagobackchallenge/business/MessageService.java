@@ -12,4 +12,6 @@ public interface MessageService {
     Optional<Message> findById(Integer id);
 
     Message postMessage(Message message);
+
+    void deleteMessageById(Integer id);
 }
