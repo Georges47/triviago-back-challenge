@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -51,7 +50,7 @@ public class Message {
         return creationDate;
     }
 
-    public void setCreation_date(Date date) throws ParseException {
+    public void setCreation_date(Date date) {
         this.creationDate = date;
     }
 }
