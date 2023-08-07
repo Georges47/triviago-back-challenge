@@ -27,14 +27,14 @@ public class MessageController {
 
     // The attributes of the message filter should be passed as query parameters
     @GetMapping("/messages")
-    public Page<Message> getMessages(@ModelAttribute MessageFilter filter, @RequestParam(value = "page", defaultValue = "0") int page,
+    public ResponseEntity<?> getMessages(@ModelAttribute MessageFilter filter, @RequestParam(value = "page", defaultValue = "0") int page,
                                      @RequestParam(value = "size", defaultValue = "10") int size) {
         //Debe recibir el tamaño de las hojas y la hoja en la que se encuentra.
         /* MessageFilter me sirve ya que en el Json se especifica el criterio de matcheo de messages.
         Esto me permite especificar en filter qué campos ya estan llenos. Por ejemplo,
         especificar un campo, como la fecha de creación */
         Pageable pageable= PageRequest.of(page, size);   //"crea" la page con el tamaño dado
-        return messageService.findAll(filter, pageable);
+        return new ResponseEntity<>(messageService.findAll(filter, pageable), HttpStatus.FOUND);
     }
 
     @GetMapping("/message/{id}")
