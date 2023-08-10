@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
+
 @Service
 public class MessageServiceImpl implements MessageService {
 
@@ -25,12 +26,12 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Message saveMessage(String author, String content) {
-        Message message = new Message();
+    public Message saveMessage(Message message) {
+        Message response = new Message();
         message.setCreationDate(LocalDate.now());
-        message.setAuthor(author);
-        message.setContent(content);
-        return messageRepository.save(message);
+        message.setAuthor(message.getAuthor());
+        message.setContent(message.getContent());
+        return messageRepository.save(response);
     }
 
     @Override
@@ -42,8 +43,10 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Message findById(Long id) {
-        return messageRepository.findById(id).orElseThrow(()->new RuntimeException("message not found"));
+        return messageRepository.findById(id).orElse(null);
     }
 
 
 }
+
+

@@ -5,10 +5,12 @@ import austral.triviago.triviagobackchallenge.presentation.dto.MessageFilter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.Optional;
+
 public interface MessageService {
     Page<Message> findAll(MessageFilter messageFilter, Pageable pageable);
 
-    Message saveMessage(String author, String content);
+    Message saveMessage(Message message);
 
     Message delete(Long id);
 
