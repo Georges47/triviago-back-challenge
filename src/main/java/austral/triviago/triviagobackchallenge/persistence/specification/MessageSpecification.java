@@ -26,6 +26,12 @@ public class MessageSpecification implements Specification<Message> {
         if (messageFilter.getAuthor() != null && !messageFilter.getAuthor().equals("")) {
             restrictions.add(criteriaBuilder.equal(message.get("content"), messageFilter.getAuthor()));
         }
+        if (messageFilter.getDateFrom() != null) {
+            restrictions.add(criteriaBuilder.greaterThanOrEqualTo(message.get("creationDate"), messageFilter.getDateFrom()));
+        }
+        if (messageFilter.getDateTo() != null) {
+            restrictions.add(criteriaBuilder.lessThanOrEqualTo(message.get("creationDate"), messageFilter.getDateTo()));
+        }
         return criteriaBuilder.and(restrictions.toArray(new Predicate[0]));
     }
 }

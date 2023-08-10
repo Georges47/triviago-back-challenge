@@ -7,4 +7,10 @@ import org.springframework.data.domain.Pageable;
 
 public interface MessageService {
     Page<Message> findAll(MessageFilter messageFilter, Pageable pageable);
+
+    Message saveMessage(String author, String content);
+
+    Message delete(Long id);
+
+    Message findById(Long id);
 }
