@@ -1,4 +1,4 @@
-package austral.triviago.triviagobackchallenge.controller;
+package austral.triviago.triviagobackchallenge;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

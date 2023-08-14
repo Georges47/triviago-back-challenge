@@ -1,4 +1,4 @@
-package austral.triviago.triviagobackchallenge.controller;
+package austral.triviago.triviagobackchallenge;
 
 import austral.triviago.triviagobackchallenge.business.impl.MessageServiceImpl;
 import austral.triviago.triviagobackchallenge.persistence.domain.Message;

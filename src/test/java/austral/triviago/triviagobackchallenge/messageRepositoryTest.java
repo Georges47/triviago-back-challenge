@@ -1,4 +1,4 @@
-package austral.triviago.triviagobackchallenge.controller;
+package austral.triviago.triviagobackchallenge;
 
 import austral.triviago.triviagobackchallenge.persistence.domain.Message;
 import austral.triviago.triviagobackchallenge.persistence.repository.MessageRepository;
