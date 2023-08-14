@@ -26,7 +26,7 @@ public class MessageController {
 
     @PostMapping("/messages")
     public Message createMessage(@RequestBody Message message) {
-        return messageService.saveMessage(message.getAuthor(), message.getContent());
+        return messageService.saveMessage(message);
     }
 
     // The attributes of the message filter should be passed as query parameters

@@ -10,7 +10,7 @@ public interface MessageService{
 
     Message findById(Long id);
 
-    Message saveMessage(String author, String content);
+    Message saveMessage(Message message);
 
     Message delete(Long id);
 }

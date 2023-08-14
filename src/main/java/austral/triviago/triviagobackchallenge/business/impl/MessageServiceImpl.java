@@ -2,6 +2,7 @@ package austral.triviago.triviagobackchallenge.business.impl;
 
 import austral.triviago.triviagobackchallenge.business.MessageService;
 import austral.triviago.triviagobackchallenge.persistence.domain.Message;
+import austral.triviago.triviagobackchallenge.persistence.exception.NotFoundException;
 import austral.triviago.triviagobackchallenge.persistence.repository.MessageRepository;
 import austral.triviago.triviagobackchallenge.persistence.specification.MessageSpecification;
 import austral.triviago.triviagobackchallenge.presentation.dto.MessageFilter;
@@ -27,21 +28,21 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Message findById(Long id) {
-        return messageRepository.findById(id).orElseThrow(() -> new RuntimeException("Message not found"));
+        return messageRepository.findById(id).orElseThrow(() -> new NotFoundException("Message not found with id: " + id));
     }
 
     @Override
-    public Message saveMessage(String author, String content) {
+    public Message saveMessage(Message m) {
         Message message = new Message();
-        message.setAuthor(author);
-        message.setDate( LocalDate.now() );
-        message.setContent(content);
+        message.setAuthor(m.getAuthor());
+        message.setDate(LocalDate.now());
+        message.setContent(m.getContent());
         return messageRepository.save(message);
     }
 
     @Override
     public Message delete(Long id) {
-        Message message = findById(id);
+        Message message = messageRepository.findById(id).orElseThrow(() -> new NotFoundException("Message not found with id: " + id));
         messageRepository.delete(message);
         return message;
     }

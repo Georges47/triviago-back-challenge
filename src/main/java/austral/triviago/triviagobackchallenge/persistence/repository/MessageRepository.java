@@ -8,7 +8,5 @@ import austral.triviago.triviagobackchallenge.persistence.domain.Message;
 
 
 public interface MessageRepository extends JpaRepository<Message, Long>, JpaSpecificationExecutor<Message> {
-    
-    
 
 }
