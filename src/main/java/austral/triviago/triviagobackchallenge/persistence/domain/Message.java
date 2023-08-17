@@ -31,11 +31,11 @@ public class Message {
     }
 
     public LocalDate getCreation_date() {
-        return LocalDate.now();
+        return creation_date;
     }
 
-    public void setCreation_date(LocalDate creation_date) {
-        this.creation_date = creation_date;
+    public void setCreation_date() {
+        this.creation_date = LocalDate.now();
     }
 
     public String getContent() {

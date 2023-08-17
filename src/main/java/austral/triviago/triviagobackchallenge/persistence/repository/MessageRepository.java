@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 public interface MessageRepository extends JpaRepository<Message,Long>, JpaSpecificationExecutor<Message> {
 
+
 }

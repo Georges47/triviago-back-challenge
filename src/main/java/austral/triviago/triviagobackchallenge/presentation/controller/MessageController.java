@@ -30,6 +30,7 @@ public class MessageController {
 
     @PostMapping("/messages")
     public Message createMessage(@RequestBody Message message){
+        message.setCreation_date();
         return messageService.save(message);
     }
 
